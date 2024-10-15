@@ -11,8 +11,8 @@ const LanguageSelect = ({language, setLanguage}: LanguageSelectProps) => {
     const [selectVisible, setSelectVisible] = useState<boolean>(false); // Initially hidden
 
     const options: Option[] = [
-        {value: 'gambinian', label: 'Gambinian'},
-        {value: 'arnaktis', label: 'Arnaktis'},
+        {value: 'gambinian', label: 'Gambinian (gambinoste)'},
+        {value: 'arnaktis', label: 'Aranaxic (Arnaktis)'},
     ];
 
     const toggleSelectVisibility = () => {

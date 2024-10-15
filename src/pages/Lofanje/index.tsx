@@ -5,7 +5,7 @@ import {Option} from "../../components/form/Select";
 
 const Lofanje = () => {
 
-    const [language, setLanguage] = useState<Option | null>({ value: 'gambinian', label: 'Gambinian' });
+    const [language, setLanguage] = useState<Option | null>({ value: 'gambinian', label: 'Gambinian (gambinoste)' });
     const [category, setCategory] = useState<string | null>(null);
     
     return (
