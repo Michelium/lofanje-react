@@ -10,7 +10,7 @@ const Lofanje = () => {
     
     return (
         <div className="">
-            <main className="container mx-auto mt-12 bg-gray-900 p-5 shadow-lg text-white">
+            <main className="container mx-auto mt-12 bg-gray-900 p-5 shadow-lg text-white rounded-md">
                 <LanguageSelect language={language} setLanguage={setLanguage}/>
 
                 <CategorySelect language={language?.value}/>
