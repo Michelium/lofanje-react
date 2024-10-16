@@ -5,9 +5,10 @@ import { FaExchangeAlt } from "react-icons/fa";
 interface LanguageSelectProps {
     language: Option | null;
     setLanguage: (language: Option | null) => void;
+    clearCategory?: () => void;
 }
 
-const LanguageSelect = ({language, setLanguage}: LanguageSelectProps) => {
+const LanguageSelect = ({language, setLanguage, clearCategory}: LanguageSelectProps) => {
     const [selectVisible, setSelectVisible] = useState<boolean>(false); // Initially hidden
 
     const options: Option[] = [
@@ -51,6 +52,7 @@ const LanguageSelect = ({language, setLanguage}: LanguageSelectProps) => {
                         value={language}
                         setValue={(selectedOption) => {
                             setLanguage(selectedOption);
+                            if (clearCategory) clearCategory();
                             setSelectVisible(false);
                         }}
                     />

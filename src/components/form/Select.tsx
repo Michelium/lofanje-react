@@ -7,7 +7,7 @@ export interface Option {
 }
 
 interface SelectProps {
-    value: Option | null; // Now accept the full Option object
+    value?: Option | null; // Now accept the full Option object
     setValue: (value: Option | null) => void; // Pass the full Option object in setter
     options: Option[];
     className?: string;
