@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Select, {Option} from "../../components/form/Select";
 import { FaExchangeAlt } from "react-icons/fa";
+import apiRequest from "../../helpers/apiHelper";
 
 interface LanguageSelectProps {
     language: Option | null;
@@ -11,17 +12,26 @@ interface LanguageSelectProps {
 const LanguageSelect = ({language, setLanguage, clearCategory}: LanguageSelectProps) => {
     const [selectVisible, setSelectVisible] = useState<boolean>(false); // Initially hidden
 
-    const options: Option[] = [
-        {value: 'gambinian', label: 'Gambinian (gambinoste)'},
-        {value: 'arnaktis', label: 'Aranaxic (Arnaktis)'},
-    ];
-
+    const [languages, setLanguages] = useState<Option[]|null>(null);
+    
     const toggleSelectVisibility = () => {
         setSelectVisible(!selectVisible);
     };
 
+    useEffect(() => {
+        apiRequest('get', '/api/languages')
+            .then(data => {
+                setLanguages(data.map((language: { id: Number, name: string }) => ({
+                    value: language.id,
+                    label: language.name,
+                })));
+            }, (error) => {
+                console.error({error});
+            })
+    }, []);
+
     return (
-        <div className="mb-4">
+        <section className="mb-4">
             <div className="flex gap-x-4">
                 <p className="text-white mb-2">selected language: {language?.label}</p>
 
@@ -46,9 +56,9 @@ const LanguageSelect = ({language, setLanguage, clearCategory}: LanguageSelectPr
                     selectVisible ? 'opacity-100 visible' : 'opacity-0 invisible'
                 }`}
             >
-                {selectVisible && (
+                {selectVisible && languages !== null && (
                     <Select
-                        options={options}
+                        options={languages}
                         value={language}
                         setValue={(selectedOption) => {
                             setLanguage(selectedOption);
@@ -58,7 +68,7 @@ const LanguageSelect = ({language, setLanguage, clearCategory}: LanguageSelectPr
                     />
                 )}
             </div>
-        </div>
+        </section>
     );
 };
 

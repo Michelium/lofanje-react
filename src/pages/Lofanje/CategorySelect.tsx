@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Select, {Option} from "../../components/form/Select";
+import apiRequest from "../../helpers/apiHelper";
 
 interface CategorySelectProps {
     language?: string | null;
@@ -9,24 +10,35 @@ interface CategorySelectProps {
 
 const CategorySelect = ({language, category, setCategory}: CategorySelectProps) => {
 
-    const options: Option[] = [
-        { value: 'option1', label: 'Option 1' },
-        { value: 'option2', label: 'Option 2' },
-    ];
+    const [categories, setCategories] = useState<Option[]|null>(null);
+
+    useEffect(() => {
+        apiRequest('get', `/api/categories?language=${language}`)
+            .then(data => {
+                setCategories(data.map((category: { id: Number, name: string }) => ({
+                    value: category.id,
+                    label: category.name,
+                })));
+            }, (error) => {
+                console.error({error});
+            })
+    }, [language]);
     
     return (
-        <div className="">
+        <section>
             <p className="text-white mb-2">choose a category:</p>
-            <Select
-                options={options}
-                // value={category}
-                setValue={(selectedOption) => {
-                    if (setCategory) {
-                        setCategory(selectedOption);
-                    }
-                }}
-            />
-        </div>
+            {categories !== null && (
+                <Select
+                    options={categories}
+                    setValue={(selectedOption) => {
+                        if (setCategory) {
+                            setCategory(selectedOption);
+                        }
+                    }}
+                />
+            )}
+            
+        </section>
     );
 };
 
