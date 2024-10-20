@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import Select, {Option} from "../../components/form/Select";
+import React, { useEffect, useState } from "react";
+import Select, { Option } from "../../components/form/Select";
 import apiRequest from "../../helpers/apiHelper";
 
 interface CategorySelectProps {
@@ -8,22 +8,22 @@ interface CategorySelectProps {
     setCategory?: (category: Option | null) => void;
 }
 
-const CategorySelect = ({language, category, setCategory}: CategorySelectProps) => {
+const CategorySelect = ({ language, category, setCategory }: CategorySelectProps) => {
 
-    const [categories, setCategories] = useState<Option[]|null>(null);
+    const [categories, setCategories] = useState<Option[] | null>(null);
 
     useEffect(() => {
-        apiRequest('get', `/api/categories?language=${language}`)
+        apiRequest("get", `/api/categories?language=${language}`)
             .then(data => {
                 setCategories(data.map((category: { id: Number, name: string }) => ({
                     value: category.id,
-                    label: category.name,
+                    label: category.name
                 })));
             }, (error) => {
-                console.error({error});
-            })
+                console.error({ error });
+            });
     }, [language]);
-    
+
     return (
         <section>
             <p className="text-white mb-2">choose a category:</p>
@@ -37,7 +37,7 @@ const CategorySelect = ({language, category, setCategory}: CategorySelectProps) 
                     }}
                 />
             )}
-            
+
         </section>
     );
 };

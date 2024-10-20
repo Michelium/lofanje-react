@@ -1,4 +1,4 @@
-import axios, {Method} from "axios";
+import axios, { Method } from "axios";
 
 const apiRequest = async (
     method: Method,
@@ -13,12 +13,12 @@ const apiRequest = async (
             // headers: {
             //     'X-API-KEY': 'your-api-key-here',
             // },
-            data,
+            data
         });
         return response.data;
     } catch (error: any) {
         if (error.response && error.response.status === 401) {
-            alert('Unauthorized: Invalid API key');
+            alert("Unauthorized: Invalid API key");
         }
         throw error;
     }
