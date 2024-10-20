@@ -23,6 +23,22 @@ const CategorySelect = ({ language, category, setCategory }: CategorySelectProps
             });
     }, [language]);
 
+    const handleCategorySelect = (selectedCategory: Category | null) => {
+        if (!selectedCategory) {
+            console.log("No category selected");
+            return;
+        }
+
+        apiRequest("get", `/api/categories/${selectedCategory.id}`)
+            .then((fullCategory: Category) => {
+                setCategory(fullCategory);
+            })
+            .catch(error => {
+                console.error("Error fetching full category:", error);
+            });
+
+    };
+
     return (
         <section>
             <p className="text-white mb-2">choose a category:</p>
@@ -30,9 +46,7 @@ const CategorySelect = ({ language, category, setCategory }: CategorySelectProps
                 <Select
                     options={categories}
                     value={category}
-                    setValue={(selectedCategory) => {
-                        setCategory(selectedCategory);
-                    }}
+                    setValue={handleCategorySelect}
                     getLabel={(category) => category.name}
                     getValue={(category) => category.id}
                 />

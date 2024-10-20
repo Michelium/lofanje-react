@@ -13,8 +13,8 @@ const Lofanje = () => {
     const [category, setCategory] = useState<Category | null>(null);
 
     return (
-        <div className="">
-            <header className="container mx-auto mt-12 bg-gray-900 p-5 shadow-lg text-white rounded-md">
+        <div className="my-12">
+            <header className="container mx-auto bg-gray-900 p-5 shadow-lg text-white rounded-md">
                 <LanguageSelect language={language} setLanguage={setLanguage} />
 
                 {language && (
@@ -22,15 +22,15 @@ const Lofanje = () => {
                 )}
             </header>
 
-            <main>
-                {category && (
-                    <section className="container mx-auto mt-5 bg-gray-900 p-5 shadow-lg text-white rounded-md">
-                        <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-xl font-bold">{language?.name} | {category.name}</h2>
+            <main className="container mx-auto mt-5 bg-gray-900 p-5 shadow-lg text-white rounded-md">
+                {language && category && (
+                    <>
+                        <section className="flex items-center justify-between mb-4">
+                            <h2 className="text-xl font-bold">{language.name} | {category.name}</h2>
                             <Button color="primary" size="small"><FaPlus className="mr-2" /> new entry</Button>
-                        </div>
-                        <EntriesTable />
-                    </section>
+                        </section>
+                        <EntriesTable category={category} />
+                    </>
                 )}
             </main>
         </div>
