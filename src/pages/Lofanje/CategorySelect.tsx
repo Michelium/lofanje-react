@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
-import Select, { Option } from "../../components/form/Select";
+import Select from "../../components/form/Select";
 import apiRequest from "../../helpers/apiHelper";
+import { Category } from "../../types/Category";
+import { Language } from "../../types/Language";
 
 interface CategorySelectProps {
-    language?: string | null;
-    category?: Option | null;
-    setCategory?: (category: Option | null) => void;
+    language?: Language | null;
+    category?: Category | null;
+    setCategory: (category: Category | null) => void;
 }
 
 const CategorySelect = ({ language, category, setCategory }: CategorySelectProps) => {
 
-    const [categories, setCategories] = useState<Option[] | null>(null);
+    const [categories, setCategories] = useState<Category[] | null>(null);
 
     useEffect(() => {
-        apiRequest("get", `/api/categories?language=${language}`)
+        apiRequest("get", `/api/categories?language=${language?.id}`)
             .then(data => {
-                setCategories(data.map((category: { id: Number, name: string }) => ({
-                    value: category.id,
-                    label: category.name
-                })));
+                setCategories(data);
             }, (error) => {
                 console.error({ error });
             });
@@ -30,11 +29,12 @@ const CategorySelect = ({ language, category, setCategory }: CategorySelectProps
             {categories !== null && (
                 <Select
                     options={categories}
-                    setValue={(selectedOption) => {
-                        if (setCategory) {
-                            setCategory(selectedOption);
-                        }
+                    value={category}
+                    setValue={(selectedCategory) => {
+                        setCategory(selectedCategory);
                     }}
+                    getLabel={(category) => category.name}
+                    getValue={(category) => category.id}
                 />
             )}
 

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Select, { Option } from "../../components/form/Select";
+import Select from "../../components/form/Select";
 import { FaExchangeAlt } from "react-icons/fa";
 import apiRequest from "../../helpers/apiHelper";
+import { Language } from "../../types/Language";
 
 interface LanguageSelectProps {
-    language: Option | null;
-    setLanguage: (language: Option | null) => void;
-    clearCategory?: () => void;
+    language: Language | null;
+    setLanguage: (language: Language | null) => void;
 }
 
-const LanguageSelect = ({ language, setLanguage, clearCategory }: LanguageSelectProps) => {
+const LanguageSelect = ({ language, setLanguage }: LanguageSelectProps) => {
     const [selectVisible, setSelectVisible] = useState<boolean>(false); // Initially hidden
 
-    const [languages, setLanguages] = useState<Option[] | null>(null);
+    const [languages, setLanguages] = useState<Language[] | null>(null);
 
     const toggleSelectVisibility = () => {
         setSelectVisible(!selectVisible);
@@ -21,10 +21,7 @@ const LanguageSelect = ({ language, setLanguage, clearCategory }: LanguageSelect
     useEffect(() => {
         apiRequest("get", "/api/languages")
             .then(data => {
-                setLanguages(data.map((language: { id: Number, name: string }) => ({
-                    value: language.id,
-                    label: language.name
-                })));
+                setLanguages(data);
             }, (error) => {
                 console.error({ error });
             });
@@ -33,7 +30,7 @@ const LanguageSelect = ({ language, setLanguage, clearCategory }: LanguageSelect
     return (
         <section className="mb-4">
             <div className="flex gap-x-4">
-                <p className="text-white mb-2">selected language: {language?.label}</p>
+                <p className="text-white mb-2">selected language: {language?.name}</p>
 
                 <div
                     className={`transition-opacity delay-100 duration-700 ease-in-out ${
@@ -60,11 +57,12 @@ const LanguageSelect = ({ language, setLanguage, clearCategory }: LanguageSelect
                     <Select
                         options={languages}
                         value={language}
-                        setValue={(selectedOption) => {
-                            setLanguage(selectedOption);
-                            if (clearCategory) clearCategory();
+                        setValue={(selectedLanguage) => {
+                            setLanguage(selectedLanguage);
                             setSelectVisible(false);
                         }}
+                        getLabel={(language) => language.name}
+                        getValue={(language) => language.id}
                     />
                 )}
             </div>

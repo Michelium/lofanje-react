@@ -1,22 +1,17 @@
 import React from "react";
 import ReactSelect, { StylesConfig } from "react-select";
 
-export interface Option {
-    value: string;
-    label: string;
-}
-
-interface SelectProps {
-    value?: Option | null; // Now accept the full Option object
-    setValue: (value: Option | null) => void; // Pass the full Option object in setter
-    options: Option[];
+export interface SelectProps<T> {
+    value?: T | null; // Accept any type as value
+    setValue: (value: T | null) => void; // Pass the selected value (generic)
+    options: T[]; // List of options (generic)
+    getLabel: (option: T) => string; // Function to extract the label from the option
+    getValue: (option: T) => any; // Function to extract the value from the option
     className?: string;
-    styles?: StylesConfig<Option, false>;
-
-    [key: string]: any; // Spread any additional props to ReactSelect
+    styles?: StylesConfig<any, false>;
 }
 
-const customStyles: StylesConfig<Option, false> = {
+const customStyles: StylesConfig<any, false> = {
     control: (provided) => ({
         ...provided,
         backgroundColor: "rgba(31, 41, 55, 1)", // Tailwind's bg-gray-800
@@ -53,19 +48,24 @@ const customStyles: StylesConfig<Option, false> = {
     })
 };
 
-const Select = ({ value, setValue, options, className, styles, ...props }: SelectProps) => {
-
-    const handleChange = (option: Option | null) => {
-        setValue(option); // Set the full Option object instead of just value
+const Select = <T,>({ value, setValue, options, getLabel, getValue, className, styles, ...props }: SelectProps<T>) => {
+    const handleChange = (option: any) => {
+        const selectedOption = options.find(opt => getValue(opt) === option?.value);
+        setValue(selectedOption || null);
     };
+
+    const formattedOptions = options.map(opt => ({
+        value: getValue(opt),
+        label: getLabel(opt),
+    }));
 
     return (
         <ReactSelect
             className={className}
             styles={{ ...customStyles, ...styles }}
-            value={value} // Use full Option object as the value
+            value={value ? { value: getValue(value), label: getLabel(value) } : null}
             onChange={handleChange}
-            options={options}
+            options={formattedOptions}
             {...props}
         />
     );
