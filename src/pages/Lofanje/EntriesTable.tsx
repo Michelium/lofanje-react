@@ -1,69 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Category } from "../../types/Category";
+import React from "react";
 import { Entry } from "../../types/Entry";
-import apiRequest from "../../helpers/apiHelper";
+import { Category } from "../../types/Category";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
 interface EntriesTableProps {
     category: Category;
+    entries: Entry[];
 }
 
-const EntriesTable = ({ category }: EntriesTableProps) => {
+const EntriesTable = ({ category, entries }: EntriesTableProps) => {
 
-    const [entries, setEntries] = useState<Entry[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-
-    useEffect(() => {
-        setLoading(true);
-        if (category?.id) {
-            apiRequest("get", `/api/entries?category=${category.id}`)
-                .then(data => {
-                    setEntries(data);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    console.error("Error fetching entries:", error);
-                });
-        }
-    }, [category]);
-
-    if (!category?.fields || category.fields.length === 0) {
-        return <div>No fields available for this category.</div>;
-    }
+    console.log("EntriesTable", { category, entries });
 
     return (
-        <section>
-            {loading ? (
-                <p>Loading entries...</p>
-            ) : (
-                <table className="table-auto w-full text-left">
-                    <thead>
-                    <tr className="align-bottom">
-                        {category.fields.map(field => (
-                            <th key={field.id}>{field.label}</th>
-                        ))}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {entries.length > 0 ? (
-                        entries.map(entry => (
-                            <tr key={entry.id}>
-                                {category.fields.map(field => (
-                                    <td key={field.id}>
-                                        {entry.value[field.name] || ""}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan={category.fields.length}>No entries found for category {category.name}</td>
-                        </tr>
-                    )}
-                    </tbody>
-                </table>
-            )
-            }
-        </section>
+        <DataTable value={entries} paginator rows={25} rowsPerPageOptions={[10, 25, 50]} removableSort showGridlines stripedRows
+                   className="border-gray-600 border-[1px] rounded-[2px]">
+            {category.fields.map(field => (
+                <Column
+                    key={field.name}
+                    field={`value.${field.name}`}
+                    header={field.label}
+                    sortable
+                    headerClassName="align-bottom"
+                />
+            ))}
+        </DataTable>
     );
 };
 
