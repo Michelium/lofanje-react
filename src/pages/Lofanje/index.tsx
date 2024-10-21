@@ -13,7 +13,7 @@ const Lofanje = () => {
     const [category, setCategory] = useState<Category | null>(null);
 
     return (
-        <div className="my-12">
+        <div className="my-5 lg:my-12">
             <header className="container mx-auto bg-gray-900 p-5 shadow-lg text-white rounded-md">
                 <LanguageSelect language={language} setLanguage={setLanguage} />
 

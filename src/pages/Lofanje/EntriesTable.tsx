@@ -7,15 +7,36 @@ import { Column } from "primereact/column";
 interface EntriesTableProps {
     category: Category;
     entries: Entry[];
+    totalRecords: number;
+    page: number;
+    rows: number;
+    sortField: string | undefined;
+    sortOrder: -1 | 1 | undefined;
+    onPageChange: (event: any) => void;
+    onSort: (event: any) => void;
 }
 
-const EntriesTable = ({ category, entries }: EntriesTableProps) => {
-
-    console.log("EntriesTable", { category, entries });
+const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, sortOrder, onPageChange, onSort }: EntriesTableProps) => {
 
     return (
-        <DataTable value={entries} paginator rows={25} rowsPerPageOptions={[10, 25, 50]} removableSort showGridlines stripedRows
-                   className="border-gray-600 border-[1px] rounded-[2px]">
+        <DataTable
+            value={entries}
+            paginator
+            rows={rows}
+            totalRecords={totalRecords}
+            lazy
+            onPage={onPageChange}
+            onSort={onSort}
+            sortField={sortField}
+            sortOrder={sortOrder}
+            rowsPerPageOptions={[10, 25, 50]}
+            removableSort
+            showGridlines
+            stripedRows
+            rowHover
+            scrollable={false}
+            className="border-gray-600 border-[1px] rounded-[2px]"
+        >
             {category.fields.map(field => (
                 <Column
                     key={field.name}
