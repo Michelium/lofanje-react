@@ -1,6 +1,6 @@
 import React from "react";
-import { Entry } from "../../types/Entry";
-import { Category } from "../../types/Category";
+import { Entry } from "../../../types/Entry";
+import { Category } from "../../../types/Category";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
@@ -17,16 +17,19 @@ interface EntriesTableProps {
 }
 
 const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, sortOrder, onPageChange, onSort }: EntriesTableProps) => {
+    const first = (page - 1) * rows;
 
     return (
         <DataTable
             value={entries}
             paginator
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             rows={rows}
             totalRecords={totalRecords}
             lazy
             onPage={onPageChange}
             onSort={onSort}
+            first={first}
             sortField={sortField}
             sortOrder={sortOrder}
             rowsPerPageOptions={[10, 25, 50]}
