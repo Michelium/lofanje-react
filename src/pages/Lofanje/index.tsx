@@ -6,11 +6,14 @@ import { FaPlus } from "react-icons/fa6";
 import Entries from "./Entries";
 import { Language } from "../../types/Language";
 import { Category } from "../../types/Category";
+import EntryForm from "./EntryForm";
 
 const Lofanje = () => {
 
     const [language, setLanguage] = useState<Language | null>(null);
     const [category, setCategory] = useState<Category | null>(null);
+
+    const [entryFormVisible, setEntryFormVisible] = useState<boolean>(false);
 
     return (
         <div className="my-5 lg:my-12">
@@ -27,9 +30,10 @@ const Lofanje = () => {
                     <>
                         <section className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold">{language.name} | {category.name}</h2>
-                            <Button color="primary" size="small"><FaPlus className="mr-2" /> new entry</Button>
+                            <Button color="primary" size="small" onClick={() => setEntryFormVisible(true)}><FaPlus className="mr-2" /> new entry</Button>
                         </section>
                         <Entries category={category} />
+                        <EntryForm visible={entryFormVisible} setVisible={setEntryFormVisible} category={category} />
                     </>
                 )}
             </main>

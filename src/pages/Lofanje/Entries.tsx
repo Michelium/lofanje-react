@@ -14,7 +14,7 @@ const Entries = ({ category }: EntriesProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [rows, setRows] = useState<number>(25);
-    const [sortField, setSortField] = useState<string | undefined>(undefined);  // Use undefined instead of null
+    const [sortField, setSortField] = useState<string | undefined>(undefined);
     const [sortOrder, setSortOrder] = useState<1 | -1 | undefined>(undefined);  // Set sortOrder to use 1 | -1 | undefined
 
     const fetchEntries = (page: number, rows: number, sortField: string | undefined, sortOrder: 1 | -1 | undefined) => {

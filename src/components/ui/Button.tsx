@@ -1,13 +1,13 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: "small" | "medium" | "large";
     color?: "primary";
     children: React.ReactNode;
     onClick?: () => void;
 }
 
-const Button = ({ color = "primary", size = "medium", children, onClick }: ButtonProps) => {
+const Button = ({ color = "primary", size = "medium", children, onClick, ...props }: ButtonProps) => {
     const sizeClasses = size === "small" ? "px-3 py-2 text-sm" : "px-6 py-3 text-lg";
 
     const colorClasses = {
@@ -18,6 +18,7 @@ const Button = ({ color = "primary", size = "medium", children, onClick }: Butto
         <button
             onClick={onClick}
             className={`${sizeClasses} ${colorClasses} border-[1px] rounded-[4px] font-medium tracking-wide transition-all duration-300 focus:outline-none flex items-center align-middle px-4`}
+            {...props}
         >
             {children}
         </button>
