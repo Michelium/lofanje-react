@@ -21,6 +21,11 @@ const Lofanje = () => {
         setSelectedEntry(entry);
         setEntryFormVisible(true);
     };
+    
+    const cancelEntryForm = () => {
+        setSelectedEntry(null);
+        setEntryFormVisible(false);
+    }
 
     const entriesRef = useRef<{ refreshEntries: () => void }>(null);
     const onEntryFormSubmit = () => {
@@ -46,7 +51,7 @@ const Lofanje = () => {
                             <Button color="primary" size="small" onClick={() => setEntryFormVisible(true)}><FaPlus className="mr-2" /> new entry</Button>
                         </section>
                         <Entries category={category} onEditEntry={editEntryAction} ref={entriesRef} />
-                        <EntryForm visible={entryFormVisible} setVisible={setEntryFormVisible} category={category} entry={selectedEntry} onSubmit={onEntryFormSubmit} />
+                        <EntryForm visible={entryFormVisible} setVisible={setEntryFormVisible} category={category} entry={selectedEntry} onSubmit={onEntryFormSubmit} onCancel={cancelEntryForm} />
                     </>
                 )}
             </main>

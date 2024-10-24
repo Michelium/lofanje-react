@@ -46,6 +46,7 @@ const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, 
             rowHover
             scrollable={false}
             tableStyle={{ tableLayout: "fixed" }}
+            paginatorClassName="border-gray-600 border-t-[1px]"
             className="border-gray-600 border-[1px] rounded-[2px]"
         >
             {category.fields.map(field => (

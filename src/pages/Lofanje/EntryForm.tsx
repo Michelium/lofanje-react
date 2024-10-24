@@ -15,9 +15,10 @@ interface EntryFormProps {
     category: Category;
     entry?: Entry | null;
     onSubmit: () => void;
+    onCancel: () => void;
 }
 
-const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit }: EntryFormProps) => {
+const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit, onCancel }: EntryFormProps) => {
     const [formData, setFormData] = useState<Record<string, any>>({});
 
     const toast = useRef<Toast>(null);
@@ -83,7 +84,8 @@ const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit }: En
                 modal
                 draggable={false}
                 maskClassName="pt-5 lg:pt-12"
-                onHide={() => setVisible(false)}>
+                closeOnEscape
+                onHide={() => onCancel()}>
                 <header className="text-white">
                     <h3 className="text-md font-bold mb-5">{entry ? "edit" : "new"} entry for <i>{category.name}</i></h3>
                 </header>
@@ -116,7 +118,7 @@ const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit }: En
                             </fieldset>
                         ))}
                         <footer className="flex justify-end gap-x-3">
-                            <Button type="button" size="small" onClick={() => setVisible(false)}>
+                            <Button type="button" size="small" onClick={() => onCancel()}>
                                 <FaTimes className="mr-2" /> cancel
                             </Button>
                             <Button color="primary" size="small" type="submit">
