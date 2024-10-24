@@ -29,7 +29,6 @@ const Entries = forwardRef(({ category, onEditEntry }: EntriesProps, ref) => {
         apiRequest("get", apiUrl)
             .then((data) => {
                 setEntries(data.entries);
-                console.log(entries);
                 setTotalRecords(Number(data.totalRecords));
                 setLoading(false);
             })
@@ -78,6 +77,7 @@ const Entries = forwardRef(({ category, onEditEntry }: EntriesProps, ref) => {
                     onPageChange={onPageChange}
                     onSort={onSort}
                     onEditEntry={onEditEntry}
+                    refreshEntries={() => fetchEntries(page, rows, sortField, sortOrder)}
                 />
             )}
         </section>

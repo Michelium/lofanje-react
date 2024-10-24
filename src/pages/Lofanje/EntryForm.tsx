@@ -64,11 +64,11 @@ const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit, onCa
         apiRequest(method, route, entryData)
             .then((data) => {
                 console.log("Entry saved:", data);
-                toast.current?.show({ severity: "success", summary: "Success", detail: "entry saved", life: 3000 });
+                toast.current?.show({ severity: "success", summary: "Success", detail: "Entry saved successfully", life: 3000 });
                 onSubmit();
             }, (error) => {
                 console.error(error);
-                toast.current?.show({ severity: "error", summary: "Error", detail: "something went wrong", life: 3000 });
+                toast.current?.show({ severity: "error", summary: "Error", detail: "Something went wrong", life: 3000 });
             });
     };
 
