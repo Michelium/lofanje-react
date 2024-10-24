@@ -4,7 +4,8 @@ import { Category } from "../../../types/Category";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import Button from "../../../components/ui/Button";
-import { FaEdit, FaTimes } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { LiaTimesSolid } from "react-icons/lia";
 import { ContextMenu } from "primereact/contextmenu";
 import apiRequest from "../../../helpers/apiHelper";
 
@@ -29,7 +30,7 @@ const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, 
 
     const [selectedEntry, setSelectedEntry] = useState<Entry | null>(null);
     const menuModel = [
-        { label: "delete entry", icon: <FaTimes className="mr-2 mt-0.5" />, command: () => selectedEntry ? deleteProduct(selectedEntry) : null }
+        { label: "delete", icon: <LiaTimesSolid className="mr-2 mt-0.5" />, command: () => selectedEntry ? deleteProduct(selectedEntry) : null }
     ];
     const deleteProduct = (entry: Entry | null) => {
         if (!entry) return;
