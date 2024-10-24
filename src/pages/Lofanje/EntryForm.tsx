@@ -13,9 +13,10 @@ interface EntryFormProps {
     setVisible: (visible: boolean) => void;
     category: Category;
     entry?: Entry | null;
+    onSubmit: () => void;
 }
 
-const EntryForm = ({ visible, setVisible, category, entry = null }: EntryFormProps) => {
+const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit }: EntryFormProps) => {
     const [formData, setFormData] = useState<Record<string, any>>({});
 
     useEffect(() => {
@@ -37,14 +38,29 @@ const EntryForm = ({ visible, setVisible, category, entry = null }: EntryFormPro
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        let entry: Entry = {
-            category_id: category.id,
-            value: formData
-        };
+        let method: 'post' | 'put';
+        let route: string = "/api/entries";
+        let entryData: Entry;
+        
+        if (!entry) { // entry create (POST)
+            method = 'post';
+            entryData = {
+                category_id: category.id,
+                value: formData
+            };
+        } else { // entry update (PUT)
+            method = 'put';
+            route += `/${entry.id}`;
+            entryData = {
+                id: entry.id,
+                value: formData
+            };
+        }
 
-        apiRequest("post", "/api/entries", entry)
+        apiRequest(method, route, entryData)
             .then((data) => {
                 console.log('Entry saved:', data);
+                onSubmit();
                 setVisible(false);
             }, (error) => {
                 console.error(error);

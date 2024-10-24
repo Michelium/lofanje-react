@@ -3,6 +3,8 @@ import { Entry } from "../../../types/Entry";
 import { Category } from "../../../types/Category";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import Button from "../../../components/ui/Button";
+import { FaEdit } from "react-icons/fa";
 
 interface EntriesTableProps {
     category: Category;
@@ -14,10 +16,15 @@ interface EntriesTableProps {
     sortOrder: -1 | 1 | undefined;
     onPageChange: (event: any) => void;
     onSort: (event: any) => void;
+    onEditEntry: (entry: Entry) => void;
 }
 
-const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, sortOrder, onPageChange, onSort }: EntriesTableProps) => {
+const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, sortOrder, onPageChange, onSort, onEditEntry }: EntriesTableProps) => {
     const first = (page - 1) * rows;
+
+    const actionBodyTemplate = (rowData: Entry) => {
+        return <Button type="button" size="small" rounded onClick={() => onEditEntry(rowData)}><FaEdit /></Button>;
+    };
 
     return (
         <DataTable
@@ -38,6 +45,7 @@ const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, 
             stripedRows
             rowHover
             scrollable={false}
+            tableStyle={{ tableLayout: 'fixed' }}
             className="border-gray-600 border-[1px] rounded-[2px]"
         >
             {category.fields.map(field => (
@@ -49,6 +57,7 @@ const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, 
                     headerClassName="align-bottom"
                 />
             ))}
+            <Column body={actionBodyTemplate} style={{ width: '70px' }} />
         </DataTable>
     );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { Category } from "../../types/Category";
 import { Entry } from "../../types/Entry";
 import apiRequest from "../../helpers/apiHelper";
@@ -6,9 +6,10 @@ import EntriesTable from "./EntriesTable";
 
 interface EntriesProps {
     category: Category;
+    onEditEntry: (entry: Entry) => void;
 }
 
-const Entries = ({ category }: EntriesProps) => {
+const Entries = forwardRef(({ category, onEditEntry }: EntriesProps, ref) => {
     const [entries, setEntries] = useState<Entry[]>([]);
     const [totalRecords, setTotalRecords] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
@@ -55,6 +56,12 @@ const Entries = ({ category }: EntriesProps) => {
         setSortOrder(event.sortOrder);
     };
 
+    useImperativeHandle(ref, () => ({
+        refreshEntries() {
+            fetchEntries(page, rows, sortField, sortOrder);
+        }
+    }));
+
     return (
         <section>
             {loading ? (
@@ -70,10 +77,11 @@ const Entries = ({ category }: EntriesProps) => {
                     sortOrder={sortOrder}
                     onPageChange={onPageChange}
                     onSort={onSort}
+                    onEditEntry={onEditEntry}
                 />
             )}
         </section>
     );
-};
+});
 
 export default Entries;

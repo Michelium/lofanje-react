@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import CategorySelect from "./CategorySelect";
 import LanguageSelect from "./LanguageSelect";
 import Button from "../../components/ui/Button";
@@ -7,13 +7,26 @@ import Entries from "./Entries";
 import { Language } from "../../types/Language";
 import { Category } from "../../types/Category";
 import EntryForm from "./EntryForm";
+import { Entry } from "../../types/Entry";
 
 const Lofanje = () => {
 
     const [language, setLanguage] = useState<Language | null>(null);
     const [category, setCategory] = useState<Category | null>(null);
 
+    const [selectedEntry, setSelectedEntry] = useState<Entry | null>(null);
     const [entryFormVisible, setEntryFormVisible] = useState<boolean>(false);
+    
+    const editEntryAction = (entry: Entry) => {
+        setSelectedEntry(entry);
+        setEntryFormVisible(true);
+    }
+
+    const entriesRef = useRef<{ refreshEntries: () => void }>(null);
+    const onEntryFormSubmit = () => {
+        entriesRef.current?.refreshEntries();
+        setEntryFormVisible(false);
+    }
 
     return (
         <div className="my-5 lg:my-12">
@@ -32,8 +45,8 @@ const Lofanje = () => {
                             <h2 className="text-xl font-bold">{language.name} | {category.name}</h2>
                             <Button color="primary" size="small" onClick={() => setEntryFormVisible(true)}><FaPlus className="mr-2" /> new entry</Button>
                         </section>
-                        <Entries category={category} />
-                        <EntryForm visible={entryFormVisible} setVisible={setEntryFormVisible} category={category} />
+                        <Entries category={category} onEditEntry={editEntryAction} ref={entriesRef}/>
+                        <EntryForm visible={entryFormVisible} setVisible={setEntryFormVisible} category={category} entry={selectedEntry} onSubmit={onEntryFormSubmit} />
                     </>
                 )}
             </main>
