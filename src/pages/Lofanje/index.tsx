@@ -30,6 +30,7 @@ const Lofanje = () => {
     const entriesRef = useRef<{ refreshEntries: () => void }>(null);
     const refreshEntries = () => {
         entriesRef.current?.refreshEntries();
+        setSelectedEntry(null);
         setEntryFormVisible(false);
     };
     

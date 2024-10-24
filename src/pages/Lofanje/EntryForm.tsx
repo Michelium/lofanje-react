@@ -66,6 +66,7 @@ const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit, onCa
                 console.log("Entry saved:", data);
                 toast.current?.show({ severity: "success", summary: "Success", detail: "Entry saved successfully", life: 3000 });
                 onSubmit();
+                setFormData({})
             }, (error) => {
                 console.error(error);
                 toast.current?.show({ severity: "error", summary: "Error", detail: "Something went wrong", life: 3000 });
