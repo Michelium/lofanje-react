@@ -85,6 +85,7 @@ const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit, onCa
                 draggable={false}
                 maskClassName="pt-5 lg:pt-12"
                 closeOnEscape
+                dismissableMask
                 onHide={() => onCancel()}>
                 <header className="text-white">
                     <h3 className="text-md font-bold mb-5">{entry ? "edit" : "new"} entry for <i>{category.name}</i></h3>
