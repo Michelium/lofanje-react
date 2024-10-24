@@ -21,30 +21,34 @@ const Lofanje = () => {
         setSelectedEntry(entry);
         setEntryFormVisible(true);
     };
-    
+
     const cancelEntryForm = () => {
         setSelectedEntry(null);
         setEntryFormVisible(false);
-    }
+    };
 
     const entriesRef = useRef<{ refreshEntries: () => void }>(null);
     const onEntryFormSubmit = () => {
         entriesRef.current?.refreshEntries();
         setEntryFormVisible(false);
     };
+    
+    const languageSelectAction = () => {
+        setCategory(null);
+    };
 
     return (
         <div className="my-5 lg:my-12">
-            <header className="container mx-auto bg-gray-900 p-5 shadow-lg text-white rounded-md">
-                <LanguageSelect language={language} setLanguage={setLanguage} />
+            <header className="container bg-gray-900 p-5 shadow-lg text-white rounded-md">
+                <LanguageSelect language={language} setLanguage={setLanguage} onSelect={languageSelectAction} />
 
                 {language && (
                     <CategorySelect language={language} category={category} setCategory={setCategory} />
                 )}
             </header>
 
-            <main className="container mx-auto mt-5 bg-gray-900 p-5 shadow-lg text-white rounded-md">
-                {language && category && (
+            {language && category && (
+                <main className="container mx-auto mt-5 bg-gray-900 p-5 shadow-lg text-white rounded-md">
                     <>
                         <section className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold">{language.name} | {category.name}</h2>
@@ -53,8 +57,8 @@ const Lofanje = () => {
                         <Entries category={category} onEditEntry={editEntryAction} ref={entriesRef} />
                         <EntryForm visible={entryFormVisible} setVisible={setEntryFormVisible} category={category} entry={selectedEntry} onSubmit={onEntryFormSubmit} onCancel={cancelEntryForm} />
                     </>
-                )}
-            </main>
+                </main>
+            )}
         </div>
     );
 };

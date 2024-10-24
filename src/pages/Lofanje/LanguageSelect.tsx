@@ -7,9 +7,10 @@ import { Language } from "../../types/Language";
 interface LanguageSelectProps {
     language: Language | null;
     setLanguage: (language: Language | null) => void;
+    onSelect?: () => void;
 }
 
-const LanguageSelect = ({ language, setLanguage }: LanguageSelectProps) => {
+const LanguageSelect = ({ language, setLanguage, onSelect }: LanguageSelectProps) => {
     const [selectVisible, setSelectVisible] = useState<boolean>(false); // Initially hidden
 
     const [languages, setLanguages] = useState<Language[] | null>(null);
@@ -59,6 +60,7 @@ const LanguageSelect = ({ language, setLanguage }: LanguageSelectProps) => {
                         value={language}
                         setValue={(selectedLanguage) => {
                             setLanguage(selectedLanguage);
+                            onSelect && onSelect();
                             setSelectVisible(false);
                         }}
                         getLabel={(language) => language.name}

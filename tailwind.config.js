@@ -5,6 +5,16 @@ module.exports = {
     ],
     theme: {
         extend: {
+            container: {
+                center: true,
+                screens: {
+                    'sm': '100%',
+                    'md': '1024px',  // Wider for medium screens
+                    'lg': '1440px',  // Wider for large screens
+                    'xl': '1680px',  // Extra-wide for extra-large screens
+                    '2xl': '1920px', // Very wide for extra-extra-large screens
+                },
+            },
             colors: {
                 'button': {
                     'enabled': '#3A3A3A',
