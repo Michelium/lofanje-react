@@ -1,4 +1,5 @@
 export interface Entry {
-    id: number;
+    id?: number;
+    category_id: number;
     value: { [key: string]: string | null };
 }

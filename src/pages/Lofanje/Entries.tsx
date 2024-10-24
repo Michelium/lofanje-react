@@ -28,6 +28,7 @@ const Entries = ({ category }: EntriesProps) => {
         apiRequest("get", apiUrl)
             .then((data) => {
                 setEntries(data.entries);
+                console.log(entries);
                 setTotalRecords(Number(data.totalRecords));
                 setLoading(false);
             })
