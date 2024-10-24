@@ -11,8 +11,8 @@ module.exports = {
                     'sm': '100%',
                     'md': '1024px',  // Wider for medium screens
                     'lg': '1440px',  // Wider for large screens
-                    'xl': '1680px',  // Extra-wide for extra-large screens
-                    '2xl': '1920px', // Very wide for extra-extra-large screens
+                    'xl': '1580px',  // Extra-wide for extra-large screens
+                    '2xl': '1820px', // Very wide for extra-extra-large screens
                 },
             },
             colors: {
