@@ -45,7 +45,7 @@ const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, 
             stripedRows
             rowHover
             scrollable={false}
-            tableStyle={{ tableLayout: 'fixed' }}
+            tableStyle={{ tableLayout: "fixed" }}
             className="border-gray-600 border-[1px] rounded-[2px]"
         >
             {category.fields.map(field => (
@@ -57,7 +57,7 @@ const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, 
                     headerClassName="align-bottom"
                 />
             ))}
-            <Column body={actionBodyTemplate} style={{ width: '70px' }} />
+            <Column body={actionBodyTemplate} style={{ width: "70px" }} />
         </DataTable>
     );
 };

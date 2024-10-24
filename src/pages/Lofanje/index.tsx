@@ -16,17 +16,17 @@ const Lofanje = () => {
 
     const [selectedEntry, setSelectedEntry] = useState<Entry | null>(null);
     const [entryFormVisible, setEntryFormVisible] = useState<boolean>(false);
-    
+
     const editEntryAction = (entry: Entry) => {
         setSelectedEntry(entry);
         setEntryFormVisible(true);
-    }
+    };
 
     const entriesRef = useRef<{ refreshEntries: () => void }>(null);
     const onEntryFormSubmit = () => {
         entriesRef.current?.refreshEntries();
         setEntryFormVisible(false);
-    }
+    };
 
     return (
         <div className="my-5 lg:my-12">
@@ -45,7 +45,7 @@ const Lofanje = () => {
                             <h2 className="text-xl font-bold">{language.name} | {category.name}</h2>
                             <Button color="primary" size="small" onClick={() => setEntryFormVisible(true)}><FaPlus className="mr-2" /> new entry</Button>
                         </section>
-                        <Entries category={category} onEditEntry={editEntryAction} ref={entriesRef}/>
+                        <Entries category={category} onEditEntry={editEntryAction} ref={entriesRef} />
                         <EntryForm visible={entryFormVisible} setVisible={setEntryFormVisible} category={category} entry={selectedEntry} onSubmit={onEntryFormSubmit} />
                     </>
                 )}
