@@ -4,11 +4,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: "small" | "medium" | "large";
     color?: "primary";
     children: React.ReactNode;
-    onClick?: () => void;
+    onClick?: (event?:any) => void;
     rounded?: boolean;
+    className?: string
 }
 
-const Button = ({ color = "primary", size = "medium", children, onClick, rounded = false, ...props }: ButtonProps) => {
+const Button = ({ color = "primary", size = "medium", children, onClick, rounded = false, className, ...props }: ButtonProps) => {
     const sizeClasses = size === "small" ? "px-3 py-2 text-sm" : "px-6 py-3 text-lg";
 
     const colorClasses = {
@@ -20,7 +21,7 @@ const Button = ({ color = "primary", size = "medium", children, onClick, rounded
     return (
         <button
             onClick={onClick}
-            className={`${sizeClasses} ${colorClasses} ${roundedClasses} border-[1px] font-medium tracking-wide transition-all duration-300 focus:outline-none flex items-center align-middle px-4`}
+            className={`${sizeClasses} ${colorClasses} ${roundedClasses} ${className} border-[1px] font-medium tracking-wide transition-all duration-300 focus:outline-none flex items-center align-middle px-4`}
             {...props}
         >
             {children}

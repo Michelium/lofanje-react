@@ -8,6 +8,7 @@ import AuthProvider, { useAuth } from "./auth/AuthContext";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import Login from "./pages/Auth/Login";
 import Logout from "./pages/Auth/Logout";
+import Settings from "./pages/Settings";
 
 const AppRoutes = () => {
     const { token } = useAuth();
@@ -20,6 +21,10 @@ const AppRoutes = () => {
                 {
                     path: "/",
                     element: <Lofanje />
+                },
+                {
+                    path: '/settings',
+                    element: <Settings />
                 },
                 {
                     path: "/logout",

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import apiRequest from "../../helpers/apiHelper";
+import Input from "../../components/form/Input";
+import Button from "../../components/ui/Button";
 
 const Login = () => {
     const { setToken } = useAuth();
@@ -39,7 +41,7 @@ const Login = () => {
                 <form onSubmit={handleLogin}>
                     <div className="mb-4">
                         <label htmlFor="username" className="block text-white mb-2">username</label>
-                        <input
+                        <Input
                             type="text"
                             id="username"
                             className="w-full p-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-gray-400"
@@ -51,7 +53,7 @@ const Login = () => {
                     </div>
                     <div className="mb-6">
                         <label htmlFor="password" className="block text-white mb-2">Password</label>
-                        <input
+                        <Input
                             type="password"
                             id="password"
                             className="w-full p-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-gray-400"
@@ -60,12 +62,9 @@ const Login = () => {
                             required
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded transition duration-200"
-                    >
+                    <Button className="w-full text-center" type="submit">
                         Login
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

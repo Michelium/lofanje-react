@@ -8,6 +8,7 @@ import { Language } from "../../types/Language";
 import { Category } from "../../types/Category";
 import EntryForm from "./EntryForm";
 import { Entry } from "../../types/Entry";
+import HeaderMenu from "./HeaderMenu";
 
 const Lofanje = () => {
 
@@ -33,7 +34,7 @@ const Lofanje = () => {
         setSelectedEntry(null);
         setEntryFormVisible(false);
     };
-    
+
     const languageSelectAction = () => {
         setCategory(null);
     };
@@ -41,6 +42,10 @@ const Lofanje = () => {
     return (
         <div className="my-5 lg:my-12">
             <header className="container bg-gray-900 p-5 shadow-lg text-white rounded-md">
+                <div className="w-100 flex justify-between items-center mb-5">
+                    <h1 className="text-2xl">Lofanje</h1>
+                    <HeaderMenu />
+                </div>
                 <LanguageSelect language={language} setLanguage={setLanguage} onSelect={languageSelectAction} />
 
                 {language && (
