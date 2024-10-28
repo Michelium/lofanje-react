@@ -16,17 +16,23 @@ const apiRequest = async (
             method,
             url: `http://127.0.0.1:8000${url}`,
             headers: {
-                'Authorization': token ? `Bearer ${token}` : '',
-                'Content-Type': 'application/json',
+                "Authorization": token ? `Bearer ${token}` : "",
+                "Content-Type": "application/json",
             },
-            data
+            data,
         });
         return response.data;
     } catch (error: any) {
         if (error.response && error.response.status === 401) {
-            console.error("Unauthorized: Invalid API key");
+            console.error("Unauthorized: Token is invalid or expired");
+
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+
+            throw new Error("Session expired. Please log in again.");
+        } else {
+            throw error;
         }
-        throw error;
     }
 };
 

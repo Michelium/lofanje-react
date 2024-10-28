@@ -87,7 +87,7 @@ const EntriesTable = ({ category, entries, totalRecords, page, rows, sortField, 
                         headerClassName="align-bottom"
                     />
                 ))}
-                <Column body={actionBodyTemplate} style={{ width: "70px" }} />
+                <Column key="actions" body={actionBodyTemplate} className="w-[70px]" />
             </DataTable>
         </>
     );
