@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import apiRequest from "../../../helpers/apiHelper";
-import { Language } from "../../../types/Language";
+import apiRequest from "../../../../helpers/apiHelper";
+import { Language } from "../../../../types/Language";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Button from "../../../components/ui/Button";
+import Button from "../../../../components/ui/Button";
 import { FaPlus } from "react-icons/fa6";
 import Form from "./Form";
 import { FaEdit, FaTimes } from "react-icons/fa";
@@ -19,6 +19,11 @@ const Languages = () => {
 
     const [formVisible, setFormVisible] = useState<boolean>(false);
     const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
+
+    const cancelForm = () => {
+        setFormVisible(false);
+        setSelectedLanguage(null);
+    };
 
     const fetchLanguages = () => {
         apiRequest("get", "/api/languages")
@@ -95,7 +100,7 @@ const Languages = () => {
                     <Column key="actions" body={actionBodyTemplate} className="w-[70px]" />
                 </DataTable>
             )}
-            <Form visible={formVisible} setVisible={setFormVisible} language={selectedLanguage} onSubmit={fetchLanguages} />
+            <Form visible={formVisible} setVisible={setFormVisible} language={selectedLanguage} onSubmit={fetchLanguages} onCancel={cancelForm} />
             <Toast ref={toast} />
             <ConfirmDialog />
         </div>

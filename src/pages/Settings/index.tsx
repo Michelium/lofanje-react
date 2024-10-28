@@ -7,7 +7,9 @@ import { LuListMinus } from "react-icons/lu";
 import { FaUsersCog } from "react-icons/fa";
 import { Language } from "../../types/Language";
 import apiRequest from "../../helpers/apiHelper";
-import Languages from "./Crud/Languages";
+import Languages from "./Crud/Language/Languages";
+import { BsFillExclamationTriangleFill } from "react-icons/bs";
+import Categories from "./Crud/Category/Categories";
 
 const Settings = () => {
     const navigate = useNavigate();
@@ -64,7 +66,7 @@ const Settings = () => {
                                 {languages?.map((language: Language) => (
                                     <li key={language.id}>
                                         <button
-                                            className={`w-full text-left p-2 pl-8 flex items-center gap-x-2`}
+                                            className={`w-full text-left p-2 pl-8 flex items-center gap-x-2 ${selectedLanguage?.id === language.id ? "bg-gray-700" : ""}`}
                                             onClick={() => {
                                                 setSelectedSection("categories");
                                                 setSelectedLanguage(language);
@@ -87,12 +89,13 @@ const Settings = () => {
                     </ul>
                 </aside>
                 <section className="w-5/6">
-                    {selectedSection === "languages" && <Languages/>}
+                    {selectedSection === "languages" && <Languages />}
                     {selectedSection === "categories" && (
                         <div>
-                            <h2 className="text-xl">Categories</h2>
-                            {selectedLanguage && (
-                                <p>Selected language: {selectedLanguage.name}</p>
+                            {!selectedLanguage ? (
+                                <i className="flex items-center gap-x-2"><BsFillExclamationTriangleFill /> select a language in the menu first</i>
+                            ) : (
+                                <Categories language={selectedLanguage} />
                             )}
                         </div>
                     )}

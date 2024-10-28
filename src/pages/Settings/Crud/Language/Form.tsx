@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { FaCheck, FaEdit, FaTimes } from "react-icons/fa";
 import { Toast } from "primereact/toast";
-import apiRequest from "../../../helpers/apiHelper";
-import Input from "../../../components/form/Input";
-import Button from "../../../components/ui/Button";
-import { Language } from "../../../types/Language";
+import apiRequest from "../../../../helpers/apiHelper";
+import Input from "../../../../components/form/Input";
+import Button from "../../../../components/ui/Button";
+import { Language } from "../../../../types/Language";
 
 interface FormProps {
     visible: boolean;
