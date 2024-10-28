@@ -8,9 +8,13 @@ import { Language } from "../../types/Language";
 import { Category } from "../../types/Category";
 import EntryForm from "./EntryForm";
 import { Entry } from "../../types/Entry";
-import HeaderMenu from "./HeaderMenu";
+import { MdSettings } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import HeaderMenu from "../../components/layout/HeaderMenu";
 
 const Lofanje = () => {
+    
+    const navigate = useNavigate();
 
     const [language, setLanguage] = useState<Language | null>(null);
     const [category, setCategory] = useState<Category | null>(null);
@@ -44,7 +48,11 @@ const Lofanje = () => {
             <header className="container bg-gray-900 p-5 shadow-lg text-white rounded-md">
                 <div className="w-100 flex justify-between items-center mb-5">
                     <h1 className="text-2xl">Lofanje</h1>
-                    <HeaderMenu />
+                    <HeaderMenu>
+                        <Button size="small" rounded onClick={() => navigate("/settings")} title="Settings">
+                            <MdSettings/>
+                        </Button>
+                    </HeaderMenu>
                 </div>
                 <LanguageSelect language={language} setLanguage={setLanguage} onSelect={languageSelectAction} />
 
