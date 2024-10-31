@@ -25,8 +25,6 @@ const emptyFormData = {
     fields: []
 };
 
-// ...
-
 const Form = ({ visible, setVisible, language, category = null, onSubmit, onCancel }: FormProps) => {
     const [formData, setFormData] = useState<{ name: string, fields: Field[] | [] }>(emptyFormData);
 

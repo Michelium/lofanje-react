@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CategorySelect from "./CategorySelect";
 import LanguageSelect from "./LanguageSelect";
 import Button from "../../components/ui/Button";
@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderMenu from "../../components/layout/HeaderMenu";
 
 const Lofanje = () => {
-    
+
     const navigate = useNavigate();
 
     const [language, setLanguage] = useState<Language | null>(null);
@@ -42,6 +42,19 @@ const Lofanje = () => {
     const languageSelectAction = () => {
         setCategory(null);
     };
+
+    useEffect(() => {
+        const storedLanguage = sessionStorage.getItem("language");
+        if (storedLanguage) {
+            setLanguage(JSON.parse(storedLanguage) as Language);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (language) {
+            sessionStorage.setItem("language", JSON.stringify(language));
+        }
+    }, [language]);
 
     return (
         <div className="my-5 lg:my-12">
