@@ -50,7 +50,6 @@ const Entries = forwardRef(({ category, onEditEntry }: EntriesProps, ref) => {
     };
 
     const onSort = (event: any) => {
-        console.log("onSort event:", event);
         setSortField(event.sortField);
         setSortOrder(event.sortOrder);
     };

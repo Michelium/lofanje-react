@@ -30,7 +30,6 @@ const InputTags = ({ tags, setTags, value, placeholder = "Add an option..." }: I
     };
 
     useEffect(() => {
-        console.log(value);
         if (value) setTags(value);
     }, [value]);
 

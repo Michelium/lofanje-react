@@ -32,7 +32,6 @@ const Form = ({ visible, setVisible, language, category = null, onSubmit, onCanc
 
     useEffect(() => {
         if (category) {
-            console.log(category.fields);
             setFormData({ name: category.name, fields: category.fields });
         } else {
             setFormData(emptyFormData);
@@ -69,9 +68,6 @@ const Form = ({ visible, setVisible, language, category = null, onSubmit, onCanc
             name: formData.name,
             fields: formData.fields
         };
-
-        console.log("Submitting data:", categoryData); // Log payload to verify
-
 
         apiRequest(method, route, categoryData)
             .then((data: any) => {
@@ -125,8 +121,8 @@ const Form = ({ visible, setVisible, language, category = null, onSubmit, onCanc
                             <label htmlFor="fields" className="text-white w-1/6">Fields:</label>
                             <div className="w-5/6">
                                 {formData.fields.map((field, index) => (
-                                    <div className="mb-5">
-                                        <div key={index} className="flex gap-x-4 items-center">
+                                    <div className="mb-5" key={index} >
+                                        <div className="flex gap-x-4 items-center">
                                             <Input
                                                 type="text"
                                                 value={field.label}

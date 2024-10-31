@@ -25,7 +25,7 @@ const CategorySelect = ({ language, category, setCategory }: CategorySelectProps
 
     const handleCategorySelect = (selectedCategory: Category | null) => {
         if (!selectedCategory) {
-            console.log("No category selected");
+            console.error("No category selected");
             return;
         }
 
