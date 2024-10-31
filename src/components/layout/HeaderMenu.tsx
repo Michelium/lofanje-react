@@ -1,5 +1,5 @@
 import React from "react";
-import { MdLogout, MdSettings } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 import Button from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ interface HeaderMenuProps {
     children: React.ReactNode;
 }
 
-const HeaderMenu = ({children}: HeaderMenuProps) => {
+const HeaderMenu = ({ children }: HeaderMenuProps) => {
     const navigate = useNavigate();
 
     return (
