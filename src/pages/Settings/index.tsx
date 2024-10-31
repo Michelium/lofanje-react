@@ -11,6 +11,7 @@ import Languages from "./Crud/Language/Languages";
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
 import Categories from "./Crud/Category/Categories";
 import SidebarItem from "./SidebarItem";
+import Users from "./Crud/User/Users";
 
 const Settings = () => {
     const navigate = useNavigate();
@@ -96,11 +97,7 @@ const Settings = () => {
                             )}
                         </div>
                     )}
-                    {selectedSection === "users" && (
-                        <div>
-                            <h2 className="text-xl">Users</h2>
-                        </div>
-                    )}
+                    {selectedSection === "users" && <Users/>}
                 </section>
             </main>
         </div>
