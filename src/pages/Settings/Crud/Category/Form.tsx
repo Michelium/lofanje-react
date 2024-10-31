@@ -103,7 +103,7 @@ const Form = ({ visible, setVisible, language, category = null, onSubmit, onCanc
                 </header>
                 <main>
                     <form onSubmit={handleSubmit}>
-                        <fieldset className="mb-4 flex items-center">
+                        <fieldset className="mb-4 flex items-center border-b-[1px] border-gray-700 pb-4">
                             <label htmlFor="name" className="text-white w-1/6">Name:</label>
                             <div className="w-5/6">
                                 <Input
