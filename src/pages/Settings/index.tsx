@@ -29,6 +29,8 @@ const Settings = () => {
     }, []);
 
 
+    const activeClasses = '' ;
+    
     return (
         <div className="my-5 lg:my-12">
             <header className="container bg-gray-900 p-5 shadow-lg text-white rounded-md">
@@ -47,7 +49,7 @@ const Settings = () => {
                     <ul className="space-y-2">
                         <li>
                             <button
-                                className={`w-full text-left p-2 flex items-center gap-x-2 ${selectedSection === "languages" ? "bg-gray-700" : ""}`}
+                                className={`w-full text-left p-2 flex items-center gap-x-2 border-l-4 ${selectedSection === "languages" ? "border-gray-400 font-bold" : "border-transparent"}`}
                                 onClick={() => setSelectedSection("languages")}
                             >
                                 <MdLanguage /> Languages
@@ -55,7 +57,7 @@ const Settings = () => {
                         </li>
                         <li>
                             <button
-                                className={`w-full text-left p-2 flex items-center gap-x-2 ${selectedSection === "categories" ? "bg-gray-700" : ""}`}
+                                className={`w-full text-left p-2 flex items-center gap-x-2 border-l-4 ${selectedSection === "categories" ? "border-gray-400 font-bold" : "border-transparent"}`}
                                 onClick={() => setSelectedSection("categories")}
                             >
                                 <LuListMinus /> Categories
@@ -66,7 +68,7 @@ const Settings = () => {
                                 {languages?.map((language: Language) => (
                                     <li key={language.id}>
                                         <button
-                                            className={`w-full text-left p-2 pl-8 flex items-center gap-x-2 ${selectedLanguage?.id === language.id ? "bg-gray-700" : ""}`}
+                                            className={`w-full text-left p-2 pl-8 flex items-center gap-x-2 border-l-4 ${selectedLanguage?.id === language.id ? "border-gray-700 font-bold" : "border-transparent"}`}
                                             onClick={() => {
                                                 setSelectedSection("categories");
                                                 setSelectedLanguage(language);
@@ -80,7 +82,7 @@ const Settings = () => {
                         )}
                         <li>
                             <button
-                                className={`w-full text-left p-2 flex items-center gap-x-2 ${selectedSection === "users" ? "bg-gray-700" : ""}`}
+                                className={`w-full text-left p-2 flex items-center gap-x-2 border-l-4 ${selectedSection === "users" ? "border-gray-400 font-bold" : "border-transparent"}`}
                                 onClick={() => setSelectedSection("users")}
                             >
                                 <FaUsersCog /> Users
