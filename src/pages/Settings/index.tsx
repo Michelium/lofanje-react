@@ -10,6 +10,7 @@ import apiRequest from "../../helpers/apiHelper";
 import Languages from "./Crud/Language/Languages";
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
 import Categories from "./Crud/Category/Categories";
+import SidebarItem from "./SidebarItem";
 
 const Settings = () => {
     const navigate = useNavigate();
@@ -48,45 +49,39 @@ const Settings = () => {
                 <aside className="w-1/6 border-r border-gray-700 pr-5">
                     <ul className="space-y-2">
                         <li>
-                            <button
-                                className={`w-full text-left p-2 flex items-center gap-x-2 border-l-4 ${selectedSection === "languages" ? "border-gray-400 font-bold" : "border-transparent"}`}
+                            <SidebarItem
+                                icon={<MdLanguage />}
+                                label="Languages"
+                                isActive={selectedSection === "languages"}
                                 onClick={() => setSelectedSection("languages")}
-                            >
-                                <MdLanguage /> Languages
-                            </button>
+                            />
                         </li>
                         <li>
-                            <button
-                                className={`w-full text-left p-2 flex items-center gap-x-2 border-l-4 ${selectedSection === "categories" ? "border-gray-400 font-bold" : "border-transparent"}`}
+                            <SidebarItem
+                                icon={<LuListMinus />}
+                                label="Categories"
+                                isActive={selectedSection === "categories"}
                                 onClick={() => setSelectedSection("categories")}
-                            >
-                                <LuListMinus /> Categories
-                            </button>
+                            />
                         </li>
-                        {selectedSection === "categories" && (
-                            <>
-                                {languages?.map((language: Language) => (
-                                    <li key={language.id}>
-                                        <button
-                                            className={`w-full text-left p-2 pl-8 flex items-center gap-x-2 border-l-4 ${selectedLanguage?.id === language.id ? "border-gray-700 font-bold" : "border-transparent"}`}
-                                            onClick={() => {
-                                                setSelectedSection("categories");
-                                                setSelectedLanguage(language);
-                                            }}
-                                        >
-                                            {language.name}
-                                        </button>
-                                    </li>
-                                ))}
-                            </>
-                        )}
+                        {selectedSection === "categories" && languages?.map(language => (
+                            <li key={language.id}>
+                                <SidebarItem
+                                    icon={null}
+                                    label={language.name}
+                                    isActive={selectedLanguage?.id === language.id}
+                                    onClick={() => setSelectedLanguage(language)}
+                                    nested
+                                />
+                            </li>
+                        ))}
                         <li>
-                            <button
-                                className={`w-full text-left p-2 flex items-center gap-x-2 border-l-4 ${selectedSection === "users" ? "border-gray-400 font-bold" : "border-transparent"}`}
+                            <SidebarItem
+                                icon={<FaUsersCog />}
+                                label="Users"
+                                isActive={selectedSection === "users"}
                                 onClick={() => setSelectedSection("users")}
-                            >
-                                <FaUsersCog /> Users
-                            </button>
+                            />
                         </li>
                     </ul>
                 </aside>
