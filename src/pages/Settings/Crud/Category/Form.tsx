@@ -9,6 +9,7 @@ import { Category } from "../../../../types/Category";
 import { Language } from "../../../../types/Language";
 import { Field } from "../../../../types/Field";
 import Select from "../../../../components/form/Select";
+import InputTags from "../../../../components/form/InputTags";
 
 interface FormProps {
     visible: boolean;
@@ -33,13 +34,14 @@ const Form = ({ visible, setVisible, language, category = null, onSubmit, onCanc
 
     useEffect(() => {
         if (category) {
+            console.log(category.fields);
             setFormData({ name: category.name, fields: category.fields });
         } else {
             setFormData(emptyFormData);
         }
     }, [category]);
 
-    const handleFieldChange = (index: number, key: "label" | "type", value: any) => {
+    const handleFieldChange = (index: number, key: keyof Field, value: any) => {
         setFormData((prev) => {
             const updatedFields = [...prev.fields];
             updatedFields[index] = { ...updatedFields[index], [key]: value };
@@ -69,6 +71,9 @@ const Form = ({ visible, setVisible, language, category = null, onSubmit, onCanc
             name: formData.name,
             fields: formData.fields
         };
+
+        console.log("Submitting data:", categoryData); // Log payload to verify
+
 
         apiRequest(method, route, categoryData)
             .then((data: any) => {
@@ -122,25 +127,37 @@ const Form = ({ visible, setVisible, language, category = null, onSubmit, onCanc
                             <label htmlFor="fields" className="text-white w-1/6">Fields:</label>
                             <div className="w-5/6">
                                 {formData.fields.map((field, index) => (
-                                    <div key={index} className="flex gap-x-4 mb-2 items-center">
-                                        <Input
-                                            type="text"
-                                            value={field.label}
-                                            placeholder="Field Label"
-                                            onChange={(e) => handleFieldChange(index, "label", e.target.value)}
-                                            className="w-3/4"
-                                        />
-                                        <Select
-                                            value={field.type}
-                                            setValue={(value) => handleFieldChange(index, "type", value)}
-                                            options={["TextType", "TextareaType", "SelectType"]}
-                                            getLabel={(option) => option}
-                                            getValue={(option) => option}
-                                            className="w-1/4"
-                                        />
-                                        <Button type="button" size="small" onClick={() => setFormData((prev) => ({ ...prev, fields: prev.fields.filter((_, i) => i !== index) }))}>
-                                            <FaTimes />
-                                        </Button>
+                                    <div className="mb-5">
+                                        <div key={index} className="flex gap-x-4 items-center">
+                                            <Input
+                                                type="text"
+                                                value={field.label}
+                                                placeholder="Field Label"
+                                                onChange={(e) => handleFieldChange(index, "label", e.target.value)}
+                                                className="w-3/4"
+                                            />
+                                            <Select
+                                                value={field.type}
+                                                setValue={(value) => handleFieldChange(index, "type", value)}
+                                                options={["TextType", "TextareaType", "SelectType"]}
+                                                getLabel={(option) => option}
+                                                getValue={(option) => option}
+                                                className="w-1/4"
+                                            />
+                                            <Button type="button" size="small" onClick={() => setFormData((prev) => ({ ...prev, fields: prev.fields.filter((_, i) => i !== index) }))}>
+                                                <FaTimes />
+                                            </Button>
+                                        </div>
+                                        {field.type === "SelectType" && (
+                                            <div className="mt-2">
+                                                <InputTags
+                                                    tags={field.options || []}
+                                                    value={field.options}
+                                                    setTags={(updatedTags) => handleFieldChange(index, "options", updatedTags)}
+                                                    placeholder="add options (press enter to add)"
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
                                 <Button type="button" size="small" className="mt-2" onClick={addField}>

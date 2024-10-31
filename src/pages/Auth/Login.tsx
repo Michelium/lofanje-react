@@ -52,7 +52,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="password" className="block text-white mb-2">Password</label>
+                        <label htmlFor="password" className="block text-white mb-2">password</label>
                         <Input
                             type="password"
                             id="password"
