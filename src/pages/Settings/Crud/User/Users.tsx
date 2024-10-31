@@ -85,8 +85,8 @@ const Users = () => {
         <div>
             <div>
                 <section className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-bold">Languages</h2>
-                    <Button color="primary" size="small" onClick={() => setFormVisible(true)}><FaPlus className="mr-2" /> new language</Button>
+                    <h2 className="text-xl font-bold">Users</h2>
+                    <Button color="primary" size="small" onClick={() => setFormVisible(true)}><FaPlus className="mr-2" /> create user</Button>
                 </section>
             </div>
             {users !== null && (
