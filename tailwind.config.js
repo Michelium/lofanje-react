@@ -7,12 +7,13 @@ module.exports = {
         extend: {
             container: {
                 center: true,
+                padding: '1rem',
                 screens: {
                     'sm': '100%',
-                    'md': '1024px',  // Wider for medium screens
-                    'lg': '1440px',  // Wider for large screens
-                    'xl': '1580px',  // Extra-wide for extra-large screens
-                    '2xl': '1820px', // Very wide for extra-extra-large screens
+                    'md': '1024px',
+                    'lg': '1440px',
+                    'xl': '1580px',
+                    '2xl': '1820px',
                 },
             },
             colors: {

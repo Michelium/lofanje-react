@@ -30,7 +30,7 @@ const LanguageSelect = ({ language, setLanguage, onSelect }: LanguageSelectProps
 
     return (
         <section className="mb-4">
-            <div className="flex gap-x-4">
+            <div className="flex gap-x-4 flex-col md:flex-row">
                 <p className="text-white mb-2">selected language: {language?.name}</p>
 
                 <div

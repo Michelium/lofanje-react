@@ -57,7 +57,7 @@ const Lofanje = () => {
     }, [language]);
 
     return (
-        <div className="my-5 lg:my-12">
+        <div className="my-5 lg:my-12 mx-4">
             <header className="container bg-gray-900 p-5 shadow-lg text-white rounded-md">
                 <div className="w-100 flex justify-between items-center mb-5">
                     <h1 className="text-2xl">Lofanje</h1>
@@ -77,7 +77,7 @@ const Lofanje = () => {
             {language && category && (
                 <main className="container mx-auto mt-5 bg-gray-900 p-5 shadow-lg text-white rounded-md">
                     <>
-                        <section className="flex items-center justify-between mb-4">
+                        <section className="flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between mb-4">
                             <h2 className="text-xl font-bold">{language.name} | {category.name}</h2>
                             <Button color="primary" size="small" onClick={() => setEntryFormVisible(true)}><FaPlus className="mr-2" /> new entry</Button>
                         </section>
