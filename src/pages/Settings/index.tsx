@@ -61,21 +61,21 @@ const Settings = () => {
                             <SidebarItem
                                 icon={<LuListMinus />}
                                 label="Categories"
-                                isActive={selectedSection === "categories"}
-                                onClick={() => setSelectedSection("categories")}
-                            />
+                            >
+                                {languages?.map(language => (
+                                    <SidebarItem
+                                        key={language.id}
+                                        icon={null}
+                                        label={language.name}
+                                        isActive={selectedSection === "categories" && selectedLanguage?.id === language.id}
+                                        onClick={() => {
+                                            setSelectedSection("categories");
+                                            setSelectedLanguage(language);
+                                        }}
+                                    />
+                                ))}
+                            </SidebarItem>
                         </li>
-                        {selectedSection === "categories" && languages?.map(language => (
-                            <li key={language.id}>
-                                <SidebarItem
-                                    icon={null}
-                                    label={language.name}
-                                    isActive={selectedLanguage?.id === language.id}
-                                    onClick={() => setSelectedLanguage(language)}
-                                    nested
-                                />
-                            </li>
-                        ))}
                         <li>
                             <SidebarItem
                                 icon={<FaUsersCog />}
@@ -97,7 +97,7 @@ const Settings = () => {
                             )}
                         </div>
                     )}
-                    {selectedSection === "users" && <Users/>}
+                    {selectedSection === "users" && <Users />}
                 </section>
             </main>
         </div>

@@ -93,7 +93,7 @@ const Categories = ({ language }: CategoriesProps) => {
                 <section className="flex items-center justify-between mb-4">
                     <div>
                         <h2 className="text-xl font-bold">Categories</h2>
-                        <p>Selected language: <b>{language.name}</b></p>
+                        <p>Changing category for: <b>{language.name}</b></p>
                     </div>
                     <Button color="primary" size="small" onClick={() => setFormVisible(true)}><FaPlus className="mr-2" /> new category</Button>
                 </section>
