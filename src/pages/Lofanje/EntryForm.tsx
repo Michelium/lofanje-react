@@ -36,6 +36,7 @@ const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit, onCa
     }, [entry, category]);
 
     const handleInputChange = (name: string, value: any) => {
+        console.log(value);
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
@@ -105,6 +106,8 @@ const EntryForm = ({ visible, setVisible, category, entry = null, onSubmit, onCa
                                             name={field.name}
                                             value={formData[field.name] || ""}
                                             onChange={(e) => handleInputChange(field.name, e.target.value)}
+                                            autoComplete="off"
+                                            specialCharactersHelper
                                         />
                                     )}
                                     {field.type === "SelectType" && (
