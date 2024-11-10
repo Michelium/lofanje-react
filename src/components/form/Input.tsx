@@ -41,37 +41,37 @@ const Input = ({ className = "", specialCharactersHelper = false, ...props }: In
             <OverlayPanel ref={specialCharactersOverlayPanel} appendTo={document.body}>
                 <div className="flex flex-col gap-y-4">
                     <div className="flex gap-x-2">
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ˌ">ˌ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ˈ">ˈ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ǝ">ǝ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ð">ð</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ɛ">ɛ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ɣ">ɣ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ʒ">ʒ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ɲ">ɲ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ɔ">ɔ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ɾ">ɾ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ʃ">ʃ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ˌ">ˌ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ˈ">ˈ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ǝ">ǝ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ð">ð</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ɛ">ɛ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ɣ">ɣ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ʒ">ʒ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ɲ">ɲ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ɔ">ɔ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ɾ">ɾ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ʃ">ʃ</Button>
                     </div>
                     <div className="flex gap-x-2">
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="«">«</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="»">»</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="→">→</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ç">ç</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="æ">æ</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="œ">œ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="«">«</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="»">»</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="→">→</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ç">ç</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="æ">æ</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="œ">œ</Button>
                     </div>
                     <div className="flex gap-x-2">
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="Á">Á</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="á">á</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="É">É</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="é">é</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="Í">Í</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="í">í</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="Ó">Ó</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ó">ó</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="Ú">Ú</Button>
-                        <Button onClick={handleSpecialCharacterClick} size="small" className="btn btn-outline-secondary text-white ipa-button" type="button" data-value="ú">ú</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="Á">Á</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="á">á</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="É">É</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="é">é</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="Í">Í</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="í">í</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="Ó">Ó</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ó">ó</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="Ú">Ú</Button>
+                        <Button onClick={handleSpecialCharacterClick} size="small" type="button" data-value="ú">ú</Button>
                     </div>
                 </div>
             </OverlayPanel>
