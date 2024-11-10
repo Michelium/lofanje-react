@@ -14,7 +14,7 @@ const apiRequest = async (
     try {
         const response = await axios({
             method,
-            url: `http://127.0.0.1:8000${url}`,
+            url: `https://api.lofanjedt.nl${url}`,
             headers: {
                 "Authorization": token ? `Bearer ${token}` : "",
                 "Content-Type": "application/json",
